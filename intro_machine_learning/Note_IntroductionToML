@@ -1,0 +1,75 @@
+Machine Learning: any algorithm through which a computer can automatically learn from past data and make accurate inferences about new data
+
+
+Types of Machine Learning
+Supervised: model learns from labelled data
+Unsupervised, Reinforced
+
+Labelled Data: data that has pairs of input/output values (such as images with labels)
+Unlabelled Data: have huge dataset of images/text that can be used to generate new ones
+
+model: function that has many parameters that are applied to inputs to produce predicted outputs
+
+
+====Training a Model====
+Forward Pass: pass input values from dataset to model to obtain predicted outputs
+Loss Function: use predicted outputs and actual labels from dataset to qualify how well model performed
+Backward pass:computing gradients of loss wrt model parameters
+Update: update parameters with gradients in a way that makes the model improve
+
+
+====Linear Regression====
+Trying to predict linear relation b/w a cont. output value and 1+ input features. (Fitting a line of best fit!)
+
+Dataset Characteristics
+Features: one or more feature variables (cont. or disc)
+Target: single cont. target var.
+
+weight is the slope, bias is the y-intercept
+For single variable, f(x) = wx + b, we do the summation for wixi for n inputs
+
+====Loss Function====
+Mean Absolute Error MAE & Mean Squared Error MSE 
+This is the sum of all the differences between the predicted and actual value for every input, divided by the number of inputs.   
+
+Goal is minimize loss function and find weight and bias such that our function most accurately maps the data. 
+
+Gradient Descent: used to iteratively update parameter values to minimise output value of a function (method of finding minimum!)
+
+x := x - a(dy/dx) where alpha is the learning rate, and ensures we don't overstep the minimum
+
+s.t. with L as our loss function
+w:= w - a(dL/dw)
+b:= b - a(dL/db)
+
+we repeat the process as above to find dL/dw and dL/db using the formula for our multivariable loss function
+
+
+====Training Loop====
+Our training loop needs to have the following steps in each iteration
+    ○ Compute ŷ for each x value in
+    dataset.
+    ○ Compute w_grad and b_grad
+    ○ Update values of w and b with
+    w_grad and b_grad values and
+    update equation.
+
+// Sample Code:
+lr = 0.000001  // This is alpha
+
+for i in range(1000):      // 1000 repetitions of training loop
+    yhat = model(x, w, b)
+    w_grad = calculate_w_gradient(yhat, y, x)
+    b_grad = calculate_b_gradient(yhat, y)
+    w = w - lr*w_grad
+    b = b - lr*b_grad
+
+====Summary====
+● The dataset for linear regression contains one or more features and a single target
+variable
+● A linear model is a linear equation with parameters w and b (and w1, w2, … if more that one feature exists in the dataset).
+● The loss function quantifies the “goodness” of our model. A higher loss value denotes
+a poor performing model and vice versa.
+● Gradient descent is used to iteratively update parameter values to reduce the output
+loss value by using gradients of the loss w.r.t. the parameters.
+● Across iterations, our model improves and the predicted line fits the data better
